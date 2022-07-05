@@ -1,0 +1,13 @@
+{{> head}}
+<div class="container">
+<h3>Add Category</h3>
+<form action="/categories/addCategory" method="POST" >
+  <div class="form-group">
+    <label >Category Name</label>
+    <input type="text" class="form-control"  name="categoryName">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{{> footer}}

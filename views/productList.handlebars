@@ -1,0 +1,67 @@
+{{> head}}
+
+<div class="container">
+  <h2>Product List</h2> 
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Description</th>
+        <th>Image</th>
+ {{#if isAuth}}
+        <th>Edit</th>
+        <th>Delete</th>
+ {{/if}}
+      </tr>
+    </thead>
+    {{#if isAuth}}
+        <tbody>
+ {{#data}}
+      <tr>
+        <td>{{productName}}</td>
+        <td>{{productCategory}}</td>
+        <td>{{description}}</td>
+        {{#productImage}}
+        <td>
+        <img src="/{{filename}}" alt="bike_picture" width="100" height="100">
+        </td>
+        {{/productImage}}
+        <td>
+            <a class="btn btn-outline-info" href="/getProductById/{{_id}}?edit=true">Edit</a>
+        </td>
+        <td>
+            <form action="/deleteProduct" method="POST">
+            <input type="hidden" name="productId" value= {{_id}}>
+        <button onclick="return ConfirmDelete()" class="btn btn-outline-danger" type="submit">Delete</button>
+        </form>
+        </td>
+      </tr>
+      {{/data}}
+
+
+    </tbody>
+    {{else}}
+    <tbody>
+ {{#data}}
+      <tr>
+        <td>{{productName}}</td>
+        <td>{{productCategory}}</td>
+        <td>{{description}}</td>
+        {{#productImage}}
+        <td>
+        <img src="/{{filename}}" alt="bike_picture" width="100" height="100">
+        </td>
+        {{/productImage}}
+      </tr>
+      {{/data}}
+
+
+    </tbody>
+    {{/if}}
+  </table>
+
+</div>
+
+{{> footer}}
